@@ -176,8 +176,7 @@ static int db_handler(request_rec *r) {
 }
 
 /* make db dir */
-static void *make_db_dir(apr_pool_t *p, char *d)
-{
+static void *make_db_dir(apr_pool_t *p, char *d) {
     db_env *db;
     db = (db_env *) apr_pcalloc(p, sizeof(db_env));
     return db;
@@ -186,8 +185,7 @@ static void *make_db_dir(apr_pool_t *p, char *d)
 /*
  * Set the value for the 'DBHost' attribute.
  */
-static const char *set_db_host(cmd_parms *cmd, void *mconfig, const char *name)
-{
+static const char *set_db_host(cmd_parms *cmd, void *mconfig, const char *name) {
     db_env *db;
     db = (db_env *) mconfig;
     db->host = ap_getword_conf(cmd->pool, &name);
@@ -197,8 +195,7 @@ static const char *set_db_host(cmd_parms *cmd, void *mconfig, const char *name)
 /*
  * Set the value for the 'DBUser' attribute.
  */
-static const char *set_db_user(cmd_parms *cmd, void *mconfig, const char *user)
-{
+static const char *set_db_user(cmd_parms *cmd, void *mconfig, const char *user) {
     db_env *db;
     db = (db_env *) mconfig;
     db->user = ap_getword_conf(cmd->pool, &user);
@@ -208,8 +205,7 @@ static const char *set_db_user(cmd_parms *cmd, void *mconfig, const char *user)
 /*
  * Set the value for the 'DBPass' attribute.
  */
-static const char *set_db_pass(cmd_parms *cmd, void *mconfig, const char *pass)
-{
+static const char *set_db_pass(cmd_parms *cmd, void *mconfig, const char *pass) {
     db_env *db;
     db = (db_env *) mconfig;
     db->pass = ap_getword_conf(cmd->pool, &pass);
@@ -219,8 +215,7 @@ static const char *set_db_pass(cmd_parms *cmd, void *mconfig, const char *pass)
 /*
  * Set the value for the 'DBPort' attribute.
  */
-static const char *set_db_port(cmd_parms *cmd, void *mconfig, const char *port)
-{
+static const char *set_db_port(cmd_parms *cmd, void *mconfig, const char *port) {
     db_env *db;
     db = (db_env *) mconfig;
     db->port = *(int *)ap_getword_conf(cmd->pool, &port);
@@ -230,8 +225,7 @@ static const char *set_db_port(cmd_parms *cmd, void *mconfig, const char *port)
 /*
  * Set the value for the 'DBName' attribute.
  */
-static const char *set_db_name(cmd_parms *cmd, void *mconfig, const char *name)
-{
+static const char *set_db_name(cmd_parms *cmd, void *mconfig, const char *name) {
     db_env *db;
     db = (db_env *) mconfig;
     db->name = ap_getword_conf(cmd->pool, &name);
@@ -241,8 +235,7 @@ static const char *set_db_name(cmd_parms *cmd, void *mconfig, const char *name)
 /*
  * Set the value for the 'DBTable' attribute.
  */
-static const char *set_db_table(cmd_parms *cmd, void *mconfig, const char *table)
-{
+static const char *set_db_table(cmd_parms *cmd, void *mconfig, const char *table) {
     db_env *db;
     db = (db_env *) mconfig;
     db->table_name = ap_getword_conf(cmd->pool, &table);
@@ -259,8 +252,7 @@ static const command_rec db_conf_cmds[] = {
     {NULL}
 };
 
-static void db_register_hooks(apr_pool_t *p)
-{
+static void db_register_hooks(apr_pool_t *p) {
     // ap_hook_post_redb_request(check_request, NULL, NULL, APR_HOOK_MIDDLE);
     ap_hook_handler(db_handler, NULL, NULL, APR_HOOK_MIDDLE);
 }
